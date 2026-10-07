@@ -23,6 +23,10 @@ socket.on("gameStarted", () => {
   $("battle").classList.remove("hidden");
 });
 
+socket.on("deckError", message => {
+  $("matchInfo").textContent = message;
+});
+
 socket.on("opponentDisconnected", () => {
   $("battle").classList.add("hidden");
   $("lobby").classList.remove("hidden");
