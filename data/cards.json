@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "cards": [],
+  "_schema": {
+    "id": "unique-card-id",
+    "name": "display name",
+    "image": "exact filename in CARD_IMAGE_DIR",
+    "civilizations": ["fire"],
+    "cost": 1,
+    "type": "creature",
+    "power": 1000,
+    "rarity": "C",
+    "effects": []
+  }
+}
