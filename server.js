@@ -98,6 +98,15 @@ function emitRoom(room) {
   io.to(room.id).emit("roomState", publicState(room));
 }
 
+function shuffle(array) {
+  const a = [...array];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function draw(player, count = 1) {
   for (let i = 0; i < count; i++) {
     if (player.deckIndex >= player.deck.length) return;
@@ -114,6 +123,7 @@ function startGame(room) {
   room.turnPlayer = 0;
 
   for (const player of room.players) {
+    player.deck = shuffle(player.deck);
     player.shields = player.deck.slice(0, 5);
     player.deckIndex = 5;
     player.hand = [];
@@ -200,10 +210,21 @@ io.on("connection", socket => {
     const player = room.players.find(p => p.socketId === socket.id);
     if (!player || !Array.isArray(deck)) return;
 
-    player.deck = deck
+    const cleanDeck = deck
       .filter(c => c && typeof c.file === "string")
-      .slice(0, 40)
       .map(c => ({ file: path.basename(c.file) }));
+
+    const counts = new Map();
+    for (const card of cleanDeck) {
+      counts.set(card.file, (counts.get(card.file) || 0) + 1);
+    }
+
+    if (cleanDeck.length !== 40 || [...counts.values()].some(count => count > 4)) {
+      socket.emit("deckError", "デッキは40枚、同じカードは4枚までです。");
+      return;
+    }
+
+    player.deck = cleanDeck;
 
     emitRoom(room);
   });
@@ -286,7 +307,7 @@ async function autoUpdate() {
       env: process.env
     });
     child.unref();
-    setTimeout(() => process.exit(0), 300);
+    setTimeout(() => process.exit(0), 1500);
   } finally {
     updating = false;
   }
