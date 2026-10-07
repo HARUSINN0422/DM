@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DM Battle</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header><h1>DM Battle</h1><span id="status">接続中...</span></header>
+<main>
+<section id="lobby" class="panel">
+<h2>対戦ロビー</h2>
+<input id="name" maxlength="20" placeholder="プレイヤー名" value="Player">
+<div class="buttons"><button id="find">クイックマッチ</button><button id="ready" disabled>準備完了</button></div>
+<p id="matchInfo">カード画像を読み込み中...</p>
+<div id="cardGrid" class="card-grid"></div>
+</section>
+<section id="battle" class="panel hidden">
+<div class="battle-top">
+<div><strong id="opponentName">Opponent</strong> <span>盾 <b id="opponentShields">0</b></span> <span>手札 <b id="opponentHand">0</b></span></div>
+<div><b id="turnInfo">待機中</b></div>
+</div>
+<div class="zone opponent-zone"></div>
+<div class="zone center-zone">バトルゾーン</div>
+<div class="zone player-zone">
+<div class="player-info"><strong id="playerName">Player</strong><span>盾 <b id="playerShields">0</b></span><span>手札 <b id="playerHand">0</b></span><span>マナ <b id="playerMana">0</b></span></div>
+<div id="hand" class="hand"></div>
+</div>
+<div class="battle-controls"><button id="draw">ドロー</button><button id="endTurn">ターン終了</button></div>
+</section>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/game.js"></script>
+</body>
+</html>
