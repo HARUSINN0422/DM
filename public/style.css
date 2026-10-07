@@ -1,0 +1,28 @@
+*{box-sizing:border-box}
+body{margin:0;background:#101318;color:#eee;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{height:58px;background:#181d25;border-bottom:1px solid #303744;display:flex;align-items:center;justify-content:space-between;padding:0 18px}
+h1{font-size:20px;margin:0}
+main{max-width:1400px;margin:auto;padding:18px}
+.panel{background:#181d25;border:1px solid #303744;border-radius:12px;padding:18px}
+.hidden{display:none}
+input{background:#0f1217;color:#fff;border:1px solid #454e5d;border-radius:7px;padding:10px;margin-right:8px}
+button{background:#2b6de0;color:white;border:0;border-radius:7px;padding:10px 14px;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+.buttons{display:flex;gap:8px;margin:12px 0}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:16px;max-height:65vh;overflow:auto}
+.card{background:#0e1116;border:1px solid #363d48;border-radius:8px;padding:5px;cursor:pointer}
+.card:hover{border-color:#6d8fd6}
+.card img{width:100%;aspect-ratio:.72;object-fit:contain;display:block;border-radius:5px;background:#080a0d}
+.card small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:4px}
+.battle-top,.player-info,.battle-controls{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.battle-top span,.player-info span{margin-left:10px}
+.zone{border:1px dashed #3b4350;border-radius:10px;min-height:100px;margin:12px 0;padding:10px}
+.opponent-zone{min-height:130px}
+.center-zone{min-height:100px;display:flex;align-items:center;justify-content:center;color:#7e8795}
+.player-zone{min-height:190px}
+.hand{display:flex;gap:8px;overflow-x:auto;padding:10px 0}
+.hand-card{width:92px;flex:0 0 auto;border-radius:7px;box-shadow:0 2px 8px #0008}
+.battle-controls{justify-content:center;margin-top:14px}
+#status{font-size:13px;color:#9aa4b2}
+#matchInfo{color:#9aa4b2}
+@media(max-width:700px){main{padding:8px}.card-grid{grid-template-columns:repeat(auto-fill,minmax(78px,1fr))}.hand-card{width:70px}}
